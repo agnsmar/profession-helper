@@ -14,7 +14,7 @@ datasource db {
     relationMode = "prisma"
 }
 
-model Post {
+model Character {
     id        Int      @id @default(autoincrement())
     name      String
     createdAt DateTime @default(now())
@@ -65,7 +65,7 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
-    posts         Post[]
+    characters    Character[]
 }
 
 model VerificationToken {
