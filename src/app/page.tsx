@@ -1,6 +1,9 @@
 import { unstable_noStore as noStore } from "next/cache";
 import Link from "next/link";
+
+import { CreateCharacter } from "./_components/create-character";
 import { getServerAuthSession } from "~/server/auth";
+import { api } from "~/trpc/server";
 
 export default async function Home() {
   noStore();
@@ -27,6 +30,26 @@ export default async function Home() {
           </Link>
         </div>
       </header>
+
+      <Characters />
     </main>
+  );
+}
+
+async function Characters() {
+  const session = await getServerAuthSession();
+  if (!session?.user) return null;
+
+  const characters = await api.character.getAll.query();
+
+  return (
+    <div className="w-full max-w-xs">
+      <CreateCharacter />
+      <div className="flex flex-col">
+        {characters.map((character, index) => {
+          return <div key={index}>{character.name}</div>;
+        })}
+      </div>
+    </div>
   );
 }
