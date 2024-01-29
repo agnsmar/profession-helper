@@ -27,6 +27,20 @@ model Character {
     @@index([createdById])
 }
 
+enum Profession {
+    ALCHEMY
+    BLACKSMITHING
+    ENCHANTING
+    ENGINEERING
+    INSCRIPTION
+    JEWELCRAFTING
+    LEATHERWORKING
+    TAILORING
+    HERBALISM
+    MINING
+    SKINNING
+}
+
 // Necessary for Next auth
 model Account {
     id                String  @id @default(cuid())
