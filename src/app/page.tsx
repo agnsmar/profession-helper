@@ -47,7 +47,11 @@ async function Characters() {
       <CreateCharacter />
       <div className="flex flex-col">
         {characters.map((character, index) => {
-          return <div key={index}>{character.name}</div>;
+          return (
+            <div key={index}>
+              {character.name}, {character.id}
+            </div>
+          );
         })}
       </div>
     </div>

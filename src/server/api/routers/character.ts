@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { number, z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 
@@ -20,4 +20,15 @@ export const characterRouter = createTRPCRouter({
       where: { createdBy: { id: ctx.session.user.id } },
     });
   }),
+
+  delete: protectedProcedure
+    .input(z.object({ id: z.number() }))
+    .mutation(async ({ ctx, input }) => {
+      return ctx.db.character.delete({
+        where: {
+          id: input.id,
+          createdBy: { id: ctx.session.user.id },
+        },
+      });
+    }),
 });
