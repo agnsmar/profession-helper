@@ -15,19 +15,33 @@ datasource db {
 }
 
 model Character {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    id          Int      @id @default(autoincrement())
+    name        String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
 
-    createdBy   User   @relation(fields: [createdById], references: [id])
+    createdBy   User    @relation(fields: [createdById], references: [id])
     createdById String
 
     @@index([name])
     @@index([createdById])
 }
 
-enum Profession {
+model Profession {
+    id          Int     @id @default(autoincrement())
+    name        ProfessionName
+    craftOrder  Int     @default(1)
+    instructor  Int     @default(1)
+    expedition  Int     @default(2)
+    consortium  Int     @default(1)
+    drops       Int     @default(2)
+    treatise    Int     @default(1)
+
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+}
+
+enum ProfessionName {
     ALCHEMY
     BLACKSMITHING
     ENCHANTING
