@@ -30,9 +30,32 @@ export default async function Home() {
           </Link>
         </div>
       </header>
+      <CurrentCharacter />
 
       <Characters />
     </main>
+  );
+}
+
+async function CurrentCharacter() {
+  const session = await getServerAuthSession();
+  if (!session?.user) return null;
+
+  const characters = await api.character.getAll.query();
+
+  return (
+    <div className="text-black">
+      <select>
+        <option selected>Choose Character</option>
+        {characters.map((character, index) => {
+          return (
+            <option key={index} value={character.id}>
+              {character.name}
+            </option>
+          );
+        })}
+      </select>
+    </div>
   );
 }
 
