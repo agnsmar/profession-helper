@@ -12,21 +12,45 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col bg-gray-800 text-white">
       <Header />
       <div className="flex min-h-full flex-grow flex-row">
-        <div className="flex min-h-full w-64 flex-col gap-1 border-black bg-gray-600 p-1 font-bold">
-          <div className="w-full rounded-lg border border-black bg-purple-900 text-center text-xl text-black">
-            Svenhammed
+        <div className="flex min-h-full w-64 flex-col gap-1 border-black bg-gray-600 p-1 font-bold text-black">
+          <div className="w-full rounded-lg border border-black bg-[#C41E3A] text-center text-xl">
+            Death Knight
           </div>
-          <div className="w-full rounded-lg border border-black bg-pink-300 text-center text-xl text-black">
-            Agnspally
+          <div className="w-full rounded-lg border border-black bg-[#A330C9] text-center text-xl ">
+            Demon Hunter
           </div>
-          <div className="w-full rounded-lg border border-black bg-green-600 text-center text-xl text-black">
-            Augnes
+          <div className="w-full rounded-lg border border-black bg-[#FF7C0A] text-center text-xl">
+            Druid
           </div>
-          <div className="w-full rounded-lg border border-black bg-orange-400 text-center text-xl text-black">
-            Agns
+          <div className="w-full rounded-lg border border-black bg-[#33937F] text-center text-xl">
+            Evoker
           </div>
-          <div className="w-full rounded-lg border border-black bg-purple-500 text-center text-xl">
-            Agnsdh
+          <div className="w-full rounded-lg border border-black bg-[#AAD372] text-center text-xl">
+            Hunter
+          </div>
+          <div className="w-full rounded-lg border border-black bg-[#3FC7EB] text-center text-xl">
+            Mage
+          </div>
+          <div className="w-full rounded-lg border border-black bg-[#00FF98] text-center text-xl">
+            Monk
+          </div>
+          <div className="w-full rounded-lg border border-black bg-[#F48CBA] text-center text-xl">
+            Paladin
+          </div>
+          <div className="w-full rounded-lg border border-black bg-[#FFFFFF] text-center text-xl">
+            Priest
+          </div>
+          <div className="w-full rounded-lg border border-black bg-[#FFF468] text-center text-xl">
+            Rogue
+          </div>
+          <div className="w-full rounded-lg border border-black bg-[#0070DD] text-center text-xl">
+            Shaman
+          </div>
+          <div className="w-full rounded-lg border border-black bg-[#8788EE] text-center text-xl">
+            Warlock
+          </div>
+          <div className="w-full rounded-lg border border-black bg-[#C69B6D] text-center text-xl">
+            Warrior
           </div>
         </div>
         <div className="flex min-h-full w-full flex-col border border-black bg-gradient-to-b from-[#2e026d] to-[#15162c] p-2">
