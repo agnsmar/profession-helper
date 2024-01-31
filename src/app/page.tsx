@@ -12,51 +12,9 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col bg-gray-800 text-white">
       <Header />
       <div className="flex min-h-full flex-grow flex-row">
-        <div className="flex min-h-full w-64 flex-col gap-1 border-black bg-gray-600 p-1 font-bold text-black">
-          <div className="w-full rounded-lg border border-black bg-[#C41E3A] text-center text-xl">
-            Death Knight
-          </div>
-          <div className="w-full rounded-lg border border-black bg-[#A330C9] text-center text-xl ">
-            Demon Hunter
-          </div>
-          <div className="w-full rounded-lg border border-black bg-[#FF7C0A] text-center text-xl">
-            Druid
-          </div>
-          <div className="w-full rounded-lg border border-black bg-[#33937F] text-center text-xl">
-            Evoker
-          </div>
-          <div className="w-full rounded-lg border border-black bg-[#AAD372] text-center text-xl">
-            Hunter
-          </div>
-          <div className="w-full rounded-lg border border-black bg-[#3FC7EB] text-center text-xl">
-            Mage
-          </div>
-          <div className="w-full rounded-lg border border-black bg-[#00FF98] text-center text-xl">
-            Monk
-          </div>
-          <div className="w-full rounded-lg border border-black bg-[#F48CBA] text-center text-xl">
-            Paladin
-          </div>
-          <div className="w-full rounded-lg border border-black bg-[#FFFFFF] text-center text-xl">
-            Priest
-          </div>
-          <div className="w-full rounded-lg border border-black bg-[#FFF468] text-center text-xl">
-            Rogue
-          </div>
-          <div className="w-full rounded-lg border border-black bg-[#0070DD] text-center text-xl">
-            Shaman
-          </div>
-          <div className="w-full rounded-lg border border-black bg-[#8788EE] text-center text-xl">
-            Warlock
-          </div>
-          <div className="w-full rounded-lg border border-black bg-[#C69B6D] text-center text-xl">
-            Warrior
-          </div>
-        </div>
+        <Characters />
         <div className="flex min-h-full w-full flex-col border border-black bg-gradient-to-b from-[#2e026d] to-[#15162c] p-2">
           <CurrentCharacter />
-
-          <Characters />
         </div>
       </div>
     </main>
@@ -117,17 +75,19 @@ async function Characters() {
   const characters = await api.character.getAll.query();
 
   return (
-    <div className="w-full max-w-xs">
+    <div className="flex min-h-full w-64 flex-col gap-1 border-black bg-gray-600 p-1 font-normal">
+      {characters.map((character, index) => {
+        return (
+          <div
+            key={index}
+            className="flex h-12 w-full items-center justify-center rounded-lg border-2 border-gray-800 bg-gray-700 text-center text-lg hover:border-gray-400 hover:bg-gray-600"
+          >
+            {character.name}
+          </div>
+        );
+      })}
+
       <CreateCharacter />
-      <div className="flex flex-col">
-        {characters.map((character, index) => {
-          return (
-            <div key={index}>
-              {character.name}, {character.id}
-            </div>
-          );
-        })}
-      </div>
     </div>
   );
 }
