@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import Link from "next/link";
 
-import { CreateCharacter } from "./_components/create-character";
+import { Characters } from "./_components/character-sidebar";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
 
@@ -9,11 +9,11 @@ export default async function Home() {
   noStore();
 
   return (
-    <main className="flex min-h-screen flex-col bg-gray-800 text-white">
+    <main className="flex h-full min-h-screen flex-col bg-gray-700 text-white">
       <Header />
-      <div className="flex min-h-full flex-grow flex-row">
+      <div className="flex flex-grow flex-row">
         <Characters />
-        <div className="flex min-h-full w-full flex-col border border-black bg-gradient-to-b from-[#2e026d] to-[#15162c] p-2">
+        <div className="flex min-h-full w-full flex-col bg-gradient-to-b from-[#2e026d] to-[#15162c] p-2">
           <CurrentCharacter />
         </div>
       </div>
@@ -24,7 +24,7 @@ export default async function Home() {
 async function Header() {
   const session = await getServerAuthSession();
   return (
-    <header className="flex h-min flex-row justify-between border-black p-2">
+    <header className="border-b-1 flex flex-row justify-between border-b-black bg-gray-800 p-2">
       <h1 className="text-3xl font-extrabold tracking-tight">
         <span className="text-[hsl(280,100%,70%)]">Profession</span> Helper
       </h1>
@@ -64,30 +64,6 @@ async function CurrentCharacter() {
           );
         })}
       </select>
-    </div>
-  );
-}
-
-async function Characters() {
-  const session = await getServerAuthSession();
-  if (!session?.user) return null;
-
-  const characters = await api.character.getAll.query();
-
-  return (
-    <div className="flex min-h-full w-64 flex-col gap-1 border-black bg-gray-600 p-1 font-normal">
-      {characters.map((character, index) => {
-        return (
-          <div
-            key={index}
-            className="flex h-12 w-full items-center justify-center rounded-lg border-2 border-gray-800 bg-gray-700 text-center text-lg hover:border-gray-400 hover:bg-gray-600"
-          >
-            {character.name}
-          </div>
-        );
-      })}
-
-      <CreateCharacter />
     </div>
   );
 }
