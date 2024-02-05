@@ -25,7 +25,7 @@ export function CreateCharacter() {
   });
 
   return (
-    <div>
+    <div className="p-2">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -38,11 +38,11 @@ export function CreateCharacter() {
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full rounded-full px-4 py-2 text-black"
+          className="w-full rounded-md px-4 py-2 text-black"
         />
         <button
           type="submit"
-          className="rounded-full bg-white/10 px-10 py-3 font-semibold transition hover:bg-white/20"
+          className="rounded-md bg-white/10 px-10 py-3 font-semibold transition hover:bg-white/20"
           disabled={createCharacter.isLoading}
         >
           {createCharacter.isLoading ? "Adding..." : "Add"}

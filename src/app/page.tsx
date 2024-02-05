@@ -9,13 +9,14 @@ export default async function Home() {
   noStore();
 
   return (
-    <main className="flex h-full min-h-screen flex-col bg-gray-700 text-white">
-      <Header />
-      <div className="flex flex-grow flex-row">
-        <Characters />
-        <div className="flex min-h-full w-full flex-col bg-gradient-to-b from-[#2e026d] to-[#15162c] p-2">
-          <CurrentCharacter />
+    <main className="flex h-screen shrink flex-row overflow-auto bg-gray-700 text-white">
+      <div className="h-full bg-gray-600">
+        <div className="flex h-full w-64 shrink flex-col overflow-hidden">
+          <Characters />
         </div>
+      </div>
+      <div className="flex h-full w-full flex-col">
+        <Header />
       </div>
     </main>
   );
@@ -24,7 +25,7 @@ export default async function Home() {
 async function Header() {
   const session = await getServerAuthSession();
   return (
-    <header className="border-b-1 flex flex-row justify-between border-b-black bg-gray-800 p-2">
+    <div className="border-b-1 flex flex-row justify-between border-b-black bg-gray-800 p-2">
       <h1 className="text-3xl font-extrabold tracking-tight">
         <span className="text-[hsl(280,100%,70%)]">Profession</span> Helper
       </h1>
@@ -42,7 +43,7 @@ async function Header() {
           </span>
         </Link>
       </div>
-    </header>
+    </div>
   );
 }
 
