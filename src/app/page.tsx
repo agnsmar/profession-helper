@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import { Characters } from "./_components/character-sidebar";
 import { getServerAuthSession } from "~/server/auth";
-import { api } from "~/trpc/server";
 
 export default async function Home() {
   noStore();
@@ -26,7 +25,7 @@ async function Header() {
   const session = await getServerAuthSession();
   return (
     <div className="border-b-1 flex flex-row justify-between border-b-black bg-gray-800 p-2">
-      <h1 className="text-3xl font-extrabold tracking-tight">
+      <h1 className="text-4xl font-extrabold tracking-tight">
         <span className="text-[hsl(280,100%,70%)]">Profession</span> Helper
       </h1>
 
@@ -43,28 +42,6 @@ async function Header() {
           </span>
         </Link>
       </div>
-    </div>
-  );
-}
-
-async function CurrentCharacter() {
-  const session = await getServerAuthSession();
-  if (!session?.user) return null;
-
-  const characters = await api.character.getAll.query();
-
-  return (
-    <div className="text-black">
-      <select>
-        <option selected>Choose Character</option>
-        {characters.map((character, index) => {
-          return (
-            <option key={index} value={character.id}>
-              {character.name}
-            </option>
-          );
-        })}
-      </select>
     </div>
   );
 }
