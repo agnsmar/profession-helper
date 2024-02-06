@@ -1,4 +1,4 @@
-import { number, z } from "zod";
+import { z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 
@@ -20,6 +20,14 @@ export const characterRouter = createTRPCRouter({
       where: { createdBy: { id: ctx.session.user.id } },
     });
   }),
+
+  get: protectedProcedure
+    .input(z.object({ id: z.number() }))
+    .query(({ ctx, input }) => {
+      return ctx.db.character.findUnique({
+        where: { createdBy: { id: ctx.session.user.id }, id: input.id },
+      });
+    }),
 
   delete: protectedProcedure
     .input(z.object({ id: z.number() }))
