@@ -3,6 +3,9 @@ import "~/styles/globals.css";
 import { Inter } from "next/font/google";
 
 import { TRPCReactProvider } from "~/trpc/react";
+import { getServerAuthSession } from "~/server/auth";
+import Link from "next/link";
+import { Characters } from "./_components/character-sidebar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,8 +26,47 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${inter.variable}`}>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+        <TRPCReactProvider>
+          <main className="flex h-screen shrink flex-row overflow-auto bg-gray-700 text-white">
+            <div className="h-full bg-gray-600">
+              <div className="flex h-full w-64 shrink flex-col overflow-hidden">
+                <Characters />
+              </div>
+            </div>
+            <div className="flex h-full w-full flex-col">
+              <Header />
+              <div className="p-3">{children}</div>
+            </div>
+          </main>
+        </TRPCReactProvider>
       </body>
     </html>
+  );
+}
+
+async function Header() {
+  const session = await getServerAuthSession();
+  return (
+    <div className="m-2 flex flex-row justify-between rounded-lg border-b-black bg-gray-800 p-3">
+      <h1 className="text-4xl font-extrabold tracking-tight">
+        <Link href={"/"}>
+          <span className="text-[hsl(280,100%,70%)]">Profession</span> Helper
+        </Link>
+      </h1>
+
+      <div className="flex flex-row items-center justify-center gap-4">
+        <p className="text-white">
+          {session && <span>{session.user?.name}</span>}
+        </p>
+        <Link
+          href={session ? "/api/auth/signout" : "/api/auth/signin"}
+          className="rounded-md bg-white/10 px-2 py-1 font-semibold no-underline transition hover:bg-white/20"
+        >
+          <span className="text-nowrap">
+            {session ? "Sign out" : "Sign in"}
+          </span>
+        </Link>
+      </div>
+    </div>
   );
 }

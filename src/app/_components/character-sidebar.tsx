@@ -10,7 +10,7 @@ export async function Characters() {
   const characters = await api.character.getAll.query();
 
   return (
-    <div className="relative flex min-h-full flex-col justify-between bg-slate-700">
+    <div className="relative flex min-h-full flex-col justify-between border-r-2 border-r-slate-800 bg-slate-700">
       <div className="scrollbar-thumb-rounded-lg flex shrink grow flex-col gap-1 overflow-y-auto border-black p-1 font-normal scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-500">
         {characters.map((character, index) => {
           return (
