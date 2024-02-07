@@ -16,7 +16,7 @@ export const characterRouter = createTRPCRouter({
 
   getAll: protectedProcedure.query(({ ctx }) => {
     return ctx.db.character.findMany({
-      orderBy: { createdAt: "desc" },
+      orderBy: { createdAt: "asc" },
       where: { createdBy: { id: ctx.session.user.id } },
     });
   }),
