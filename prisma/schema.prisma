@@ -30,12 +30,12 @@ model Character {
 model Profession {
     id          Int     @id @default(autoincrement())
     name        ProfessionName
-    craftOrder  Int     @default(1)
-    instructor  Int     @default(1)
-    expedition  Int     @default(2)
-    consortium  Int     @default(1)
-    drops       Int     @default(2)
-    treatise    Int     @default(1)
+    craftOrder  Boolean     @default(false)
+    instructor  Boolean     @default(false)
+    expedition  Boolean     @default(false)
+    consortium  Boolean     @default(false)
+    drops       Boolean     @default(false)
+    treatise    Boolean     @default(false)
 
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
