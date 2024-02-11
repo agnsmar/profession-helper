@@ -37,7 +37,7 @@ model Profession {
   updatedAt   DateTime   @updatedAt
   Character   Character? @relation(fields: [characterId], references: [id])
   characterId Int?
-  taskId      Int
+  taskId      Int?
 
   @@index([name])
   @@index([characterId])
