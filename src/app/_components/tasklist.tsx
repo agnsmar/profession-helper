@@ -39,9 +39,15 @@ export const TaskList = (props: { id: string }) => {
 
 const Task = (props: { name: string; done: boolean }) => {
   return (
-    <div className="flex w-64 items-center justify-between rounded-md border border-gray-400 bg-gray-500 p-2">
-      <h3>{props.name}</h3>
-      <input className="h-5 w-5" type="checkbox" defaultChecked={props.done} />
+    <div className="rounded-lg p-1 hover:bg-gray-500">
+      <div className="m-1 flex w-64 items-center justify-between border-b-2 border-dotted">
+        <h3>{props.name}</h3>
+        <input
+          className="m-1 h-5 w-5 "
+          type="checkbox"
+          defaultChecked={props.done}
+        />
+      </div>
     </div>
   );
 };
