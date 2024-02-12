@@ -31,29 +31,12 @@ export const professionRouter = createTRPCRouter({
       });
     }),
 
-  getAll: protectedProcedure.query(({ ctx }) => {
-    return ctx.db.character.findMany({
-      orderBy: { createdAt: "asc" },
-      where: { createdBy: { id: ctx.session.user.id } },
-    });
-  }),
-
-  get: protectedProcedure
-    .input(z.object({ id: z.number() }))
+  getAll: protectedProcedure
+    .input(z.object({ characterId: z.number() }))
     .query(({ ctx, input }) => {
-      return ctx.db.character.findUnique({
-        where: { createdBy: { id: ctx.session.user.id }, id: input.id },
-      });
-    }),
-
-  delete: protectedProcedure
-    .input(z.object({ id: z.number() }))
-    .mutation(async ({ ctx, input }) => {
-      return ctx.db.character.delete({
-        where: {
-          id: input.id,
-          createdBy: { id: ctx.session.user.id },
-        },
+      return ctx.db.profession.findMany({
+        orderBy: { createdAt: "asc" },
+        where: { characterId: input.characterId },
       });
     }),
 });
