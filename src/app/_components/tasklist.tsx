@@ -10,7 +10,13 @@ export const TaskList = (props: { id: string }) => {
 
   return (
     <div className="flex flex-wrap gap-8">
-      <button className="h-12 w-12 rounded-md border">+</button>
+      {professions.length < 2 && (
+        <div className="flex h-32 w-64 flex-col items-center justify-center gap-2 rounded-md bg-gray-600 p-4">
+          <button className="text h-12 rounded-md border bg-gray-700 p-2 text-xl font-semibold tracking-tight">
+            Add Profession
+          </button>
+        </div>
+      )}
       {professions.map((profession, index) => {
         return (
           <div
