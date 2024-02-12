@@ -3,12 +3,14 @@
 import { api } from "~/trpc/react";
 
 export const TaskList = (props: { id: string }) => {
-  const character = api.character.get.useQuery({ id: Number(props.id) });
-
-  const professions = [0, 1]; //await api.character.getAll.useQuery();
+  const professions =
+    api.profession.getAll.useQuery({
+      characterId: Number(props.id),
+    }) && [];
 
   return (
     <div className="flex flex-wrap gap-8">
+      <button className="h-12 w-12 rounded-md border">+</button>
       {professions.map((profession, index) => {
         return (
           <div
@@ -25,6 +27,9 @@ export const TaskList = (props: { id: string }) => {
             <Task name="Treatise" done={true} />
             <Task name="Expedition Drops" done={true} />
             <Task name="World Drops" done={true} />
+            <button className="text h-12 w-12 rounded-md border bg-gray-700">
+              -
+            </button>
           </div>
         );
       })}
